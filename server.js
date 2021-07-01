@@ -5,7 +5,9 @@ const app = express()
 const weather = require('./data/weather.json')
 const cors = require('cors')
 app.use(cors())
+
 /*----endpoint server-----*/
+
 /*----For test of server (rout)-----*/
 
 app.get('/port',(req,res)=>{
@@ -16,8 +18,8 @@ app.get('/port',(req,res)=>{
 
 app.get('/weather',(req,res)=>{
  
-    let =()=>
-    {findData
+    let findData=()=>
+    {
         return weather.data.map(item=>{
          return new Forecast(item)
         })
@@ -34,7 +36,6 @@ class Forecast{
     }
 }
 
-/* ------- */
 app.listen(process.env.PORT,()=>{
     console.log(process.env.PORT);
     console.log("The Server Has Started!");
