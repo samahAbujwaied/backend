@@ -20,19 +20,24 @@ app.get('/weather',(req,res)=>{
  
     let findData=()=>
     {
-        return weather.data.map(item=>{
+        return weather.map(item=>{
+            
          return new Forecast(item)
         })
 
+       
+
     }
-    console.log(res.json(findData()));
+    res.json(findData());
+   
 } )
 
 
 class Forecast{
     constructor(weatherData){
-        this.valid_date=weatherData.valid_date,
-        this.description=weatherData.weather.description
+        
+        this.valid_date=weatherData.data[0].valid_date,
+        this.description=weatherData.data[0].weather.description
     }
 }
 
