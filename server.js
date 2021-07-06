@@ -1,43 +1,31 @@
 'use strict';
-//All requires should be on the top
-require('dotenv').config(); // npm i dotenv
-const express = require('express'); //when you require it you need to install  (npm i express)
-// const weatherData = require('./data/weather.json')
-const cors = require('cors'); //understand it more
+require('dotenv').config(); 
+const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
-const PORT = process.env.PORT // <=> const PORT = 3001;
+const PORT = process.env.PORT 
 const server = express();
-server.use(cors()); //  make my server opened for anyone
+server.use(cors());
 const weatherHandler = require('./modules/weather');
 const movieHandler = require('./modules/movie');
 
-
-
-// http://localhost:3001/
+/* ---------Endpoint ------ */
 server.get('/', (req, res) => {
-    res.send('home route')
-})
+    res.send('Welcome ....')})
 
-// http://localhost:3001/test
-server.get('/test', (req, res) => {
-    res.send('test')
-})
+    server.get('/test', (req, res) => {
+    res.send('test server')})
 
-
-server.get('/weather', weatherHandler)
+    server.get('/weather', weatherHandler)
 
 server.get('/movie', movieHandler)
 
-
-
-server.get('*', (req, res) => { // * means all, so for errors we should put it in last
+server.get('*', (req, res) => { 
     if (res.status(400))
         res.send('Bad Request');
     else if (res.status(404))
-        res.send('Not Found');
-})
-
-
+        res.send('Not Found');})
+/*------listen port-------*/
 server.listen(PORT, () => {
-    console.log(`Listening on PORT ${PORT}`)
+    console.log(`Listen on PORT ${PORT}`)
 })
